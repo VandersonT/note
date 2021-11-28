@@ -63,6 +63,8 @@ header h1{
     box-shadow: 1px 1px 15px -3px #000000;
     cursor: pointer;
     transition: 0.2s;
+    overflow-y: auto;
+    overflow-wrap: break-word;
 }
 
 .pin{
@@ -204,4 +206,58 @@ header h1{
 .save:hover{
     background-color: #0091f1;
     color: #f5f5f5;
+}
+
+@media screen and (max-width: 650px){
+    .openNote{
+        width: 75%;
+        height: 80vh;
+    }
+    .openNote__menu{
+        width: 75%;
+    }
+    .boxNotes{
+        justify-content: center;
+    }
+    .empty{
+        font-size: 20px;
+    }
+    .empty i{
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    header h1{
+        font-size: 24px;
+    }
+    .openNote{
+        width: 90%;
+        height: 350px;
+    }
+    .openNote__menu{
+        width: 90%;
+    }
+    .cancel,
+    .save{
+        width: 80px;
+    }
+    .boxNotes{
+        flex-direction: column;
+        align-items: center;
+    }
+    .empty{
+        font-size: 18px;
+    }
+    .empty i{
+        font-size: 15px;
+    }
+    .barThemeMode{
+        width: 45px;
+        height: 14px;
+    }
+    .activeThemeMode{
+        width: 18px;
+        height: 18px;
+    }
 }

@@ -25,6 +25,7 @@ document.querySelector('.delete').addEventListener('click', function(){
     if(confirm('Você quer realmente deletar essa nota?')){
         list.splice(selected, 1);
         mountNotes(list);
+        sendDoubleClickEventToNote()
         selected = null;
         localStorage.setItem("notes", JSON.stringify(list))
         if(list.length < 1){
@@ -35,38 +36,57 @@ document.querySelector('.delete').addEventListener('click', function(){
     }
 });
 
-for(let i = 0; i < list.length; i++){
-    notes[i].addEventListener('dblclick', function(e){
-        document.querySelector('.openNote').innerText = list[selected];
-        document.querySelector('.BoxOpenNote').style.display = 'flex';
-    })
-}
-
+sendDoubleClickEventToNote();
 
 document.querySelector('.edit').addEventListener('click', function(){
     document.querySelector('.openNote').innerText = list[selected];
     document.querySelector('.BoxOpenNote').style.display = 'flex';
 });
 
+document.querySelector('.BoxOpenNote').addEventListener('click', function(e){
+    if(this === e.target){
+        document.querySelector('.BoxOpenNote').style.display = 'none';
+    }
+})
+
+
 document.querySelector('.cancel').addEventListener('click', function(){
     document.querySelector('.BoxOpenNote').style.display = 'none';
 });
 
 document.querySelector('.save').addEventListener('click', function(){
-    let textEdited = document.querySelector('.openNote').innerText;
+    let text = document.querySelector('.openNote').innerText;
     
+    if(text.length >= 181){
+        alert('Anotação muito grande. (max: 180 letras)')
+        return false;
+    }
+
     if(selected == null){
-        list.push(textEdited);
+
+        if(list.length >= 5){
+            alert('Desculpe, mas você só pode adicionar 5 notas.');
+            return false;
+        }
+
+        list.push(text);
         selected = list.length -1;
-        
     }else{
-        list[selected] = textEdited;
+        list[selected] = text;
     }
 
     localStorage.setItem("notes", JSON.stringify(list));
     document.querySelector('.BoxOpenNote').style.display = 'none';
     mountNotes(list);
+    sendDoubleClickEventToNote();
     notes[selected].classList.add('selected');
+})
+
+document.querySelector('.openNote').addEventListener('keypress', function(e){
+    if(e.target.innerText.length >= 180){
+        alert('Anotação muito grande. (max: 180 letras)')
+        e.preventDefault();
+    }
 })
 
 /***/
@@ -123,6 +143,15 @@ function sendEventsToNotes(){
                 notes[j].classList.remove('selected');
             }
             notes[i].classList.add('selected');
+        })
+    }
+}
+
+function sendDoubleClickEventToNote(){
+    for(let i = 0; i < list.length; i++){
+        notes[i].addEventListener('dblclick', function(e){
+            document.querySelector('.openNote').innerText = list[selected];
+            document.querySelector('.BoxOpenNote').style.display = 'flex';
         })
     }
 }
