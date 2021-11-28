@@ -30,15 +30,18 @@ document.querySelector('.delete').addEventListener('click', function(){
         if(list.length < 1){
             document.querySelector('.boxNotes').innerHTML = '<p class="empty" noteId="">Você não possui nada anotado</p>';
         }
+        document.querySelector('.menuNote').style.display = 'none';
+        newNote.style.bottom = '3%';
     }
 });
 
-for(let i = 0; i < notes.length; i++){
+for(let i = 0; i < list.length; i++){
     notes[i].addEventListener('dblclick', function(e){
         document.querySelector('.openNote').innerText = list[selected];
         document.querySelector('.BoxOpenNote').style.display = 'flex';
     })
 }
+
 
 document.querySelector('.edit').addEventListener('click', function(){
     document.querySelector('.openNote').innerText = list[selected];
