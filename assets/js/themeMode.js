@@ -51,7 +51,7 @@ function changeThemeToLight(){
     document.querySelector('header').style.borderBottom = '0';
     document.querySelector('html').style.backgroundColor = '#F2F2F2';
     document.querySelector('.newNote').style.color = 'white';
-    document.querySelector('.menuNote').style.backgroundColor = '#098FDA';
-    document.querySelector('.menuNote').style.borderTop = '0';
+    document.querySelector('.menuNote').style.backgroundColor = '#cfcfcf';
+    document.querySelector('.menuNote').style.borderTop = '1px solid #777777';
 }
 /*------------------------------------------------------------------------------------------------------*/

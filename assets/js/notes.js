@@ -1,7 +1,5 @@
 let selected = null;
 let notes;
-/*let teste = ['teste1', 'teste2', 'teste3', 'teste4', 'teste5'];
-localStorage.setItem("notes", JSON.stringify(teste))*/
 
 /*Get all notes from localStorage*/
 let list = [];
@@ -22,9 +20,9 @@ newNote.addEventListener('click', function(){
 
 /*Notes events*/
 document.querySelector('.delete').addEventListener('click', function(){
-    if(confirm('Você quer realmente deletar essa nota?'+selected)){
+    if(confirm('Você quer realmente deletar essa nota?')){
         list.splice(selected, 1);
-        mountNotes(list)
+        mountNotes(list);
         selected = null;
         localStorage.setItem("notes", JSON.stringify(list))
         if(list.length < 1){
@@ -32,6 +30,13 @@ document.querySelector('.delete').addEventListener('click', function(){
         }
     }
 });
+
+for(let i = 0; i < notes.length; i++){
+    notes[i].addEventListener('dblclick', function(e){
+        document.querySelector('.openNote').innerText = list[selected];
+        document.querySelector('.BoxOpenNote').style.display = 'flex';
+    })
+}
 
 document.querySelector('.edit').addEventListener('click', function(){
     document.querySelector('.openNote').innerText = list[selected];
@@ -41,6 +46,16 @@ document.querySelector('.edit').addEventListener('click', function(){
 document.querySelector('.cancel').addEventListener('click', function(){
     document.querySelector('.BoxOpenNote').style.display = 'none';
 });
+
+document.querySelector('.save').addEventListener('click', function(){
+    let textEdited = document.querySelector('.openNote').innerText;
+    list[selected] = textEdited;
+    localStorage.setItem("notes", JSON.stringify(list));
+    document.querySelector('.BoxOpenNote').style.display = 'none';
+    mountNotes(list);
+    notes[selected].classList.add('selected');
+})
+
 /***/
 
 /*Close noteMenu*/
