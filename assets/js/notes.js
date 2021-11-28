@@ -1,7 +1,9 @@
+/*Global vars*/
 let selected = null;
 let notes;
+/***/
 
-/*Get all notes from localStorage*/
+/*-------------------------------Get all notes from localStorage------------------------------------------*/
 let list = [];
 if(localStorage.getItem("notes")){
     list = JSON.parse(localStorage.getItem("notes"));
@@ -9,23 +11,22 @@ if(localStorage.getItem("notes")){
         mountNotes(list);
     }
 }
-/***/
+/*--------------------------------------------------------------------------------------------------------*/
 
-/*Create a new note*/
+/*-----------------------------------Create a new note----------------------------------------------------*/
 let newNote = document.querySelector('.newNote');
 newNote.addEventListener('click', function(){
     document.querySelector('.openNote').innerText = '';
     document.querySelector('.BoxOpenNote').style.display = 'flex';
     selected = null;
 });
-/***/
+/*--------------------------------------------------------------------------------------------------------*/
 
-/*Notes events*/
+/*------------------------------------Notes events--------------------------------------------------------*/
 document.querySelector('.delete').addEventListener('click', function(){
     if(confirm('Você quer realmente deletar essa nota?')){
         list.splice(selected, 1);
         mountNotes(list);
-        sendDoubleClickEventToNote()
         selected = null;
         localStorage.setItem("notes", JSON.stringify(list))
         if(list.length < 1){
@@ -36,8 +37,6 @@ document.querySelector('.delete').addEventListener('click', function(){
     }
 });
 
-sendDoubleClickEventToNote();
-
 document.querySelector('.edit').addEventListener('click', function(){
     document.querySelector('.openNote').innerText = list[selected];
     document.querySelector('.BoxOpenNote').style.display = 'flex';
@@ -47,8 +46,7 @@ document.querySelector('.BoxOpenNote').addEventListener('click', function(e){
     if(this === e.target){
         document.querySelector('.BoxOpenNote').style.display = 'none';
     }
-})
-
+});
 
 document.querySelector('.cancel').addEventListener('click', function(){
     document.querySelector('.BoxOpenNote').style.display = 'none';
@@ -62,7 +60,7 @@ document.querySelector('.save').addEventListener('click', function(){
         return false;
     }
 
-    if(selected == null){
+    if(selected == null){//if null then is a new note
 
         if(list.length >= 5){
             alert('Desculpe, mas você só pode adicionar 5 notas.');
@@ -77,8 +75,9 @@ document.querySelector('.save').addEventListener('click', function(){
 
     localStorage.setItem("notes", JSON.stringify(list));
     document.querySelector('.BoxOpenNote').style.display = 'none';
+
+    /*remounts on the screen*/
     mountNotes(list);
-    sendDoubleClickEventToNote();
     notes[selected].classList.add('selected');
 })
 
@@ -88,10 +87,10 @@ document.querySelector('.openNote').addEventListener('keypress', function(e){
         e.preventDefault();
     }
 })
+/*--------------------------------------------------------------------------------------------------------*/
 
-/***/
 
-/*Close noteMenu*/
+/*----------------------------------------Close noteMenu--------------------------------------------------*/
 document.querySelector('.boxNotes').addEventListener('click', function(e){
     if(this === e.target){
         document.querySelector('.menuNote').style.display = 'none';
@@ -108,9 +107,9 @@ document.querySelector('.closeNoteMenu').addEventListener('click', function(e){
         newNote.style.bottom = '3%';
     }
 })
-/***/
+/*--------------------------------------------------------------------------------------------------------*/
 
-/*Functions*/
+/*-----------------------------------------Functions------------------------------------------------------*/
 function mountNotes(list){
 
     document.querySelector('.boxNotes').innerHTML = '';
@@ -124,10 +123,10 @@ function mountNotes(list){
         `;
         document.querySelectorAll('.noteSingle')[i].setAttribute('noteId', i)
     }
-    sendEventsToNotes()
+    sendEventsToNotes();
+    sendDoubleClickEventToNote();
 }
 
-sendEventsToNotes()
 function sendEventsToNotes(){
     notes = document.querySelectorAll('.noteSingle');
 
@@ -155,3 +154,4 @@ function sendDoubleClickEventToNote(){
         })
     }
 }
+/*--------------------------------------------------------------------------------------------------------*/

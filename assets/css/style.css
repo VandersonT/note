@@ -18,6 +18,11 @@ header h1{
     font-size: 28px;
 }
 
+header h1 i{
+    font-size: 22px;
+    color: rgb(255, 230, 0)
+}
+
 .green{
     color: #05FC00;
 }
@@ -208,6 +213,7 @@ header h1{
     color: #f5f5f5;
 }
 
+/*-------------------------------------------RESPONSIVO------------------------------------------------*/
 @media screen and (max-width: 650px){
     .openNote{
         width: 75%;
@@ -231,6 +237,9 @@ header h1{
     header h1{
         font-size: 24px;
     }
+    header h1 i{
+        font-size: 20px;
+    }
     .openNote{
         width: 90%;
         height: 350px;
@@ -245,6 +254,7 @@ header h1{
     .boxNotes{
         flex-direction: column;
         align-items: center;
+        justify-content: flex-start;
     }
     .empty{
         font-size: 18px;
