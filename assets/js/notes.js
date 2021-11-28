@@ -14,7 +14,9 @@ if(localStorage.getItem("notes")){
 /*Create a new note*/
 let newNote = document.querySelector('.newNote');
 newNote.addEventListener('click', function(){
-    alert('Criando nova nota')
+    document.querySelector('.openNote').innerText = '';
+    document.querySelector('.BoxOpenNote').style.display = 'flex';
+    selected = null;
 });
 /***/
 
@@ -49,7 +51,15 @@ document.querySelector('.cancel').addEventListener('click', function(){
 
 document.querySelector('.save').addEventListener('click', function(){
     let textEdited = document.querySelector('.openNote').innerText;
-    list[selected] = textEdited;
+    
+    if(selected == null){
+        list.push(textEdited);
+        selected = list.length -1;
+        
+    }else{
+        list[selected] = textEdited;
+    }
+
     localStorage.setItem("notes", JSON.stringify(list));
     document.querySelector('.BoxOpenNote').style.display = 'none';
     mountNotes(list);
