@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <title>My.Note</title>
+    <!--MetaTag-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width,height=device-height" />
+    <meta name="description" content="" />
+    <meta name="keyword" content="pomodoro,pomodoro timer,pomodoro tecnica,pomodoro timer online,a pomodoro meaning,pomodoro technique,pomodoro method" />
+    <meta name="author" content="Vanderson Tiago"/>
+
+    <!--css's-->
+    <link rel="shortcut icon" type="image-x/png" href="assets/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./assets/css/default.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <script src="https://kit.fontawesome.com/90bf9437da.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <header>
+        <h1>My<span class="green">.</span>Note</h1>
+        <div class="barThemeMode">
+            <div class="activeThemeMode"></div>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="boxNotes">
+            <p class="empty" noteId="">Você não possui nenhum nota ainda</p>
+        </section>
+
+        <section class="menuNote animate__animated animate__fadeInUp">
+            <i class="fas fa-trash-alt delete"></i>
+            <i class="fas fa-edit edit"></i>
+            <i class="far fa-times-circle closeNoteMenu"></i>
+        </section>
+
+        <div class="newNote"><i class="fas fa-plus"></i></div>
+
+    </main>
+
+
+    <script src="./assets/js/themeMode.js"></script>
+    <script src="./assets/js/notes.js"></script>
+</body>
+</html>
